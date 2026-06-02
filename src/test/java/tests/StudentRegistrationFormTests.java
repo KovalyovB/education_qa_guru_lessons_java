@@ -1,19 +1,29 @@
 package tests;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class StudentRegistrationFormTests extends TestBase {
 
+    @BeforeEach
+    void toRegistrationPage() {
+        open("/automation-practice-form");
+    }
+
+    @AfterEach
+    void tearDown() {
+        closeWebDriver();
+    }
+
     @Test
     void registrationWithAllFieldsTest() {
-        open("/automation-practice-form");
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userEmail']").setValue("koryaginant@google.com");
@@ -49,6 +59,20 @@ public class StudentRegistrationFormTests extends TestBase {
         $(By.xpath("//*[@id='lastName']")).shouldHave(value("Корягин"));
         $(By.xpath("//input[@id='gender-radio-1' and @value='Male']")).isSelected();
         $(By.xpath("//*[@id='userNumber']")).shouldHave(value("9948581928"));
+
+    }
+
+    @Test
+    void isRequiredPhoneNumberMissing () {
+        open("/automation-practice-form");
+        $("[id='firstName']").setValue("Антон");
+        $("[id='lastName']").setValue("Корягин");
+        $("[id='genterWrapper'] [value='Male']").click();
+        $("[id='submit']").click();
+
+        $("input[id='userNumber']")
+                .shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+
 
     }
 }
