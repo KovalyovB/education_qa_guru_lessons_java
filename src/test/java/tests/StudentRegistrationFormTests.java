@@ -59,7 +59,6 @@ public class StudentRegistrationFormTests extends TestBase {
         $(By.xpath("//*[@id='lastName']")).shouldHave(value("Корягин"));
         $(By.xpath("//input[@id='gender-radio-1' and @value='Male']")).isSelected();
         $(By.xpath("//*[@id='userNumber']")).shouldHave(value("9948581928"));
-
     }
 
     @Test
@@ -72,8 +71,16 @@ public class StudentRegistrationFormTests extends TestBase {
 
         $("input[id='userNumber']")
                 .shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+    }
 
+    @Test
+    void isRequiredGenderMissing() {
+        open("/automation-practice-form");
+        $("[id='firstName']").setValue("Антон");
+        $("[id='lastName']").setValue("Корягин");
+        $("[id='userNumber']").setValue("9948581928");
 
+        $("#example-modal-sizes-title-lg").shouldNot(exist);
     }
 
     @Test
