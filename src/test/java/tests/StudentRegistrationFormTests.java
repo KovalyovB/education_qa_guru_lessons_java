@@ -1,8 +1,9 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -35,5 +36,21 @@ public class StudentRegistrationFormTests extends TestBase {
 
         $("[id='example-modal-sizes-title-lg']").shouldHave(text("Thanks for submitting the form"));
     }
+
+    @Test
+    void fillRequiredFieldsTest() {
+        open("/automation-practice-form");
+        $("[id='firstName']").setValue("Антон");
+        $("[id='lastName']").setValue("Корягин");
+        $("[id='genterWrapper'] [value='Male']").click();
+        $("[id='userNumber']").setValue("9948581928");
+
+        $(By.xpath("//*[@id='firstName']")).shouldHave(value("Антон"));
+        $(By.xpath("//*[@id='lastName']")).shouldHave(value("Корягин"));
+        $(By.xpath("//input[@id='gender-radio-1' and @value='Male']")).isSelected();
+        $(By.xpath("//*[@id='userNumber']")).shouldHave(value("9948581928"));
+
+    }
 }
+
 
