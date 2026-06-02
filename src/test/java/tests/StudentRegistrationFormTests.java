@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class StudentRegistrationFormTests extends TestBase {
 
     @BeforeEach
@@ -32,7 +31,7 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='dateOfBirthInput']").click();
         $("[class='react-datepicker__month-select']").selectOption("February");
         $("[class='react-datepicker__year-select']").selectOption("1996");
-        $("[class='react-datepicker__day react-datepicker__day--003 react-datepicker__day--weekend']").click();
+        $("[aria-label='Choose Saturday, February 3rd, 1996']").click();
         $("[class='subjects-auto-complete__control css-13cymwt-control']").click();
         $("[class='subjects-auto-complete__input']").setValue("Bio").pressEnter();
         $("[id='hobbiesWrapper']").$(byText("Sports")).click();
@@ -49,7 +48,6 @@ public class StudentRegistrationFormTests extends TestBase {
 
     @Test
     void fillRequiredFieldsTest() {
-        open("/automation-practice-form");
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='genterWrapper'] [value='Male']").click();
@@ -62,8 +60,7 @@ public class StudentRegistrationFormTests extends TestBase {
     }
 
     @Test
-    void isRequiredPhoneNumberMissing () {
-        open("/automation-practice-form");
+    void isRequiredPhoneNumberMissingTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='genterWrapper'] [value='Male']").click();
@@ -74,8 +71,7 @@ public class StudentRegistrationFormTests extends TestBase {
     }
 
     @Test
-    void isRequiredGenderMissing() {
-        open("/automation-practice-form");
+    void isRequiredGenderMissingTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userNumber']").setValue("9948581928");
@@ -84,7 +80,7 @@ public class StudentRegistrationFormTests extends TestBase {
     }
 
     @Test
-    void emailValidationFailed() {
+    void emailValidationFailedTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userEmail']").setValue("111");
@@ -93,7 +89,7 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='dateOfBirthInput']").click();
         $("[class='react-datepicker__month-select']").selectOption("February");
         $("[class='react-datepicker__year-select']").selectOption("1996");
-        $("[class='react-datepicker__day react-datepicker__day--003 react-datepicker__day--weekend']").click();
+        $("[aria-label='Choose Saturday, February 3rd, 1996']").click();
         $("[class='subjects-auto-complete__control css-13cymwt-control']").click();
         $("[class='subjects-auto-complete__input']").setValue("Bio").pressEnter();
         $("[id='hobbiesWrapper']").$(byText("Sports")).click();
@@ -107,7 +103,11 @@ public class StudentRegistrationFormTests extends TestBase {
 
         $("#example-modal-sizes-title-lg").shouldNot(exist);
     }
+
+    @Test
+    void tryRegisterWithEmptyFieldsTest() {
+        $("[id='submit']").click();
+
+        $("#example-modal-sizes-title-lg").shouldNot(exist);
+    }
 }
-
-
-
