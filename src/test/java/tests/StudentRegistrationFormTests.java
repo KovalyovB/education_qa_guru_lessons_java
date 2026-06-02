@@ -26,7 +26,7 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='hobbiesWrapper']").$(byText("Sports")).click();
         $("[id='hobbiesWrapper']").$(byText("Reading")).click();
         $("[id='hobbiesWrapper']").$(byText("Music")).click();
-        $("input[type='file']").uploadFromClasspath("test.pdf");
+        $("input[type='file']").uploadFromClasspath("krolik.jpg");
         sleep(1000000);
 
 
