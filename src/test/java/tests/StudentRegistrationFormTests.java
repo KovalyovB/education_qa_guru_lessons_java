@@ -1,13 +1,12 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class StudentRegistrationFormTests extends TestBase {
 
@@ -16,24 +15,19 @@ public class StudentRegistrationFormTests extends TestBase {
         open("/automation-practice-form");
     }
 
-    @AfterEach
-    void tearDown() {
-        closeWebDriver();
-    }
-
     @Test
     void registrationWithAllFieldsTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userEmail']").setValue("koryaginant@google.com");
-        $("[id='genterWrapper'] [value='Male']").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("[id='userNumber']").setValue("9948581928");
         $("[id='dateOfBirthInput']").click();
         $("[class='react-datepicker__month-select']").selectOption("February");
         $("[class='react-datepicker__year-select']").selectOption("1996");
-        $("[aria-label='Choose Saturday, February 3rd, 1996']").click();
+        $("[class='react-datepicker__month']").$(byText("3")).click();
         $("[class='subjects-auto-complete__control css-13cymwt-control']").click();
-        $("[class='subjects-auto-complete__input']").setValue("Bio").pressEnter();
+        $("#subjectsInput").setValue("Bio").pressEnter();
         $("[id='hobbiesWrapper']").$(byText("Sports")).click();
         $("[id='hobbiesWrapper']").$(byText("Reading")).click();
         $("[id='hobbiesWrapper']").$(byText("Music")).click();
@@ -44,26 +38,77 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='submit']").click();
 
         $("[id='example-modal-sizes-title-lg']").shouldHave(text("Thanks for submitting the form"));
+        $("[class='table-responsive']")
+                .find(byText("Student Name"))
+                .parent()
+                .shouldHave(text("Антон Корягин"));
+        $("[class='table-responsive']")
+                .find(byText("Student Email"))
+                .parent()
+                .shouldHave(text("koryaginant@google.com"));
+        $("[class='table-responsive']")
+                .find(byText("Gender"))
+                .parent()
+                .shouldHave(text("Male"));
+        $("[class='table-responsive']")
+                .find(byText("Mobile"))
+                .parent()
+                .shouldHave(text("9948581928"));
+        $("[class='table-responsive']")
+                .find(byText("Date of Birth"))
+                .parent()
+                .shouldHave(text("03 February,1996"));
+        $("[class='table-responsive']")
+                .find(byText("Subjects"))
+                .parent()
+                .shouldHave(text("Biology"));
+        $("[class='table-responsive']")
+                .find(byText("Hobbies"))
+                .parent()
+                .shouldHave(text("Sports, Reading, Music"));
+        $("[class='table-responsive']")
+                .find(byText("Picture"))
+                .parent()
+                .shouldHave(text("krolik.jpg"));
+        $("[class='table-responsive']")
+                .find(byText("Address"))
+                .parent()
+                .shouldHave(text("Деревня дедушки, ул.Колотушкина 32"));
+        $("[class='table-responsive']")
+                .find(byText("State and City"))
+                .parent()
+                .shouldHave(text("Haryana Panipat"));
+
     }
 
     @Test
     void fillRequiredFieldsTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
-        $("[id='genterWrapper'] [value='Male']").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("[id='userNumber']").setValue("9948581928");
+        $("[id='submit']").click();
 
-        $(By.xpath("//*[@id='firstName']")).shouldHave(value("Антон"));
-        $(By.xpath("//*[@id='lastName']")).shouldHave(value("Корягин"));
-        $(By.xpath("//input[@id='gender-radio-1' and @value='Male']")).isSelected();
-        $(By.xpath("//*[@id='userNumber']")).shouldHave(value("9948581928"));
+        $("[id='example-modal-sizes-title-lg']").shouldHave(text("Thanks for submitting the form"));
+        $("[class='table-responsive']")
+                .find(byText("Student Name"))
+                .parent()
+                .shouldHave(text("Антон Корягин"));
+        $("[class='table-responsive']")
+                .find(byText("Gender"))
+                .parent()
+                .shouldHave(text("Male"));
+        $("[class='table-responsive']")
+                .find(byText("Mobile"))
+                .parent()
+                .shouldHave(text("9948581928"));
     }
 
     @Test
     void isRequiredPhoneNumberMissingTest() {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
-        $("[id='genterWrapper'] [value='Male']").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("[id='submit']").click();
 
         $("input[id='userNumber']")
@@ -75,6 +120,7 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userNumber']").setValue("9948581928");
+        $("[id='submit']").click();
 
         $("#example-modal-sizes-title-lg").shouldNot(exist);
     }
@@ -84,7 +130,7 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[id='firstName']").setValue("Антон");
         $("[id='lastName']").setValue("Корягин");
         $("[id='userEmail']").setValue("111");
-        $("[id='genterWrapper'] [value='Male']").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("[id='userNumber']").setValue("9948581928");
         $("[id='dateOfBirthInput']").click();
         $("[class='react-datepicker__month-select']").selectOption("February");
