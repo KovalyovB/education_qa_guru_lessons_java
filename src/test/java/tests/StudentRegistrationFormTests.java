@@ -26,7 +26,6 @@ public class StudentRegistrationFormTests extends TestBase {
         $("[class='react-datepicker__month-select']").selectOption("February");
         $("[class='react-datepicker__year-select']").selectOption("1996");
         $("[class='react-datepicker__month']").$(byText("3")).click();
-        $("[class='subjects-auto-complete__control css-13cymwt-control']").click();
         $("#subjectsInput").setValue("Bio").pressEnter();
         $("[id='hobbiesWrapper']").$(byText("Sports")).click();
         $("[id='hobbiesWrapper']").$(byText("Reading")).click();
