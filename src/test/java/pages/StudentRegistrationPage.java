@@ -14,20 +14,20 @@ public class StudentRegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     FormResultsComponent formResultsComponent = new FormResultsComponent();
 
-    private SelenideElement firstNameInput = $("[id='firstName']");
-    private SelenideElement lastNameInput = $("[id='lastName']");
-    private SelenideElement userEmailInput = $("[id='userEmail']");
-    private SelenideElement genderTypeContainer = $("#genterWrapper");
-    private SelenideElement userNumberInput = $("[id='userNumber']");
-    private SelenideElement dataOfBirthInput = $("[id='dateOfBirthInput']");
-    private SelenideElement subjectsInput = $("#subjectsInput");
-    private SelenideElement hobbiesContainer = $("[id='hobbiesWrapper']");
-    private SelenideElement uploadFileButton = $("input[type='file']");
-    private SelenideElement currentAddressInput = $("[id='currentAddress']");
-    private SelenideElement stateSelect = $("[id='react-select-3-input']");
-    private SelenideElement citySelect = $("[id='react-select-4-input']");
-    private SelenideElement submitButton = $("[id='submit']");
-    private SelenideElement modalWindowMessage = $("[id='example-modal-sizes-title-lg']");
+    private final SelenideElement firstNameInput = $("[id='firstName']");
+    private final SelenideElement lastNameInput = $("[id='lastName']");
+    private final SelenideElement userEmailInput = $("[id='userEmail']");
+    private final SelenideElement genderTypeContainer = $("#genterWrapper");
+    private final  SelenideElement userNumberInput = $("[id='userNumber']");
+    private final SelenideElement dataOfBirthInput = $("[id='dateOfBirthInput']");
+    private final SelenideElement subjectsInput = $("#subjectsInput");
+    private final SelenideElement hobbiesContainer = $("[id='hobbiesWrapper']");
+    private final SelenideElement uploadFileButton = $("input[type='file']");
+    private final SelenideElement currentAddressInput = $("[id='currentAddress']");
+    private final SelenideElement stateSelect = $("[id='react-select-3-input']");
+    private final SelenideElement citySelect = $("[id='react-select-4-input']");
+    private final SelenideElement submitButton = $("[id='submit']");
+    private final SelenideElement modalWindowMessage = $("[id='example-modal-sizes-title-lg']");
 
     public StudentRegistrationPage openPage() {
         open("/automation-practice-form");
