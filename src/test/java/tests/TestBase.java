@@ -13,7 +13,7 @@ public class TestBase {
     StudentRegistrationPage studentRegistrationPage = new StudentRegistrationPage();
 
     @BeforeAll
-    static void beforeAll() {
+    static void setupEnvironment() {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
