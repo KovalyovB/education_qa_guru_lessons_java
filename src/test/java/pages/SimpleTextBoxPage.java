@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.open;
 import static resources.SimpleTextBoxTestData.fullName;
 
 public class SimpleTextBoxPage {
-    private final SelenideElement fullNameInput = $("[id='userName']");
-    private final SelenideElement userEmailInput = $("[id='userEmail']");
-    private final SelenideElement submitButton = $("[id='submit']");
-    private final SelenideElement registrationResultBlock = $("[class='border col-md-12 col-sm-12']");
+    private final SelenideElement fullNameInput = $("#userName");
+    private final SelenideElement userEmailInput = $("#userEmail");
+    private final SelenideElement submitButton = $("#submit");
+    private final SelenideElement registrationResultBlock = $("#output");
     private final SelenideElement registrationResultName = $("#name");
 
     public SimpleTextBoxPage openPage() {

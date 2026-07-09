@@ -10,7 +10,7 @@ import static resources.RegistrationTestData.*;
 
 public class FormResultsComponent {
 
-    public SelenideElement formResults = $("[class='table-responsive']");
+    public SelenideElement formResults = $(".table-responsive");
     public SelenideElement userNumberInputForm =$("input[id='userNumber']");
 
 

@@ -1,10 +1,12 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.StudentRegistrationPage;
 
 import static resources.RegistrationTestData.*;
 
 public class StudentRegistrationFormTests extends TestBase {
+    StudentRegistrationPage studentRegistrationPage = new StudentRegistrationPage();
 
     @Test
     void registrationWithAllFieldsTest() {
