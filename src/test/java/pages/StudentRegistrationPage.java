@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.FormResultsComponent;
+import resources.RegistrationTestData;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
@@ -120,25 +121,25 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage checkAllFieldsResults() {
-        formResultsComponent.checkNameComponent();
-        formResultsComponent.checkEmailComponent();
-        formResultsComponent.checkGenderComponent();
-        formResultsComponent.checkNumberComponent();
-        formResultsComponent.checkDateOfBirthComponent();
-        formResultsComponent.checkSubjectsComponent();
-        formResultsComponent.checkHobbiesComponent();
-        formResultsComponent.checkFileComponent();
-        formResultsComponent.checkAddressComponent();
-        formResultsComponent.checkStateAndCityComponent();
+    public StudentRegistrationPage checkAllFieldsResults(RegistrationTestData data) {
+        formResultsComponent.checkNameComponent(data);
+        formResultsComponent.checkEmailComponent(data);
+        formResultsComponent.checkGenderComponent(data);
+        formResultsComponent.checkNumberComponent(data);
+        formResultsComponent.checkDateOfBirthComponent(data);
+        formResultsComponent.checkSubjectsComponent(data);
+        formResultsComponent.checkHobbiesComponent(data);
+        formResultsComponent.checkFileComponent(data);
+        formResultsComponent.checkAddressComponent(data);
+        formResultsComponent.checkStateAndCityComponent(data);
 
         return this;
     }
 
-    public StudentRegistrationPage checkRequiredFieldsResults() {
-        formResultsComponent.checkNameComponent();
-        formResultsComponent.checkGenderComponent();
-        formResultsComponent.checkNumberComponent();
+    public StudentRegistrationPage checkRequiredFieldsResults(RegistrationTestData data) {
+        formResultsComponent.checkNameComponent(data);
+        formResultsComponent.checkGenderComponent(data);
+        formResultsComponent.checkNumberComponent(data);
 
         return this;
     }

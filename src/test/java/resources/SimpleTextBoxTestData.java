@@ -1,6 +1,12 @@
 package resources;
 
+import com.github.javafaker.Faker;
+
+import java.util.Locale;
+
 public class SimpleTextBoxTestData {
-    public static String fullName = "Марченко Анатолий Викторович";
+    private final Faker fakerRu = new Faker(new Locale("ru"));
+
+    public  String fullName = fakerRu.name().fullName();
     public static String invalidTextBoxEmail = "myemail123";
 }

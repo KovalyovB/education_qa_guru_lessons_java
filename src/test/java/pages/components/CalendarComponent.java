@@ -15,5 +15,4 @@ public class CalendarComponent {
         this.year.selectOption(year);
         this.day.$(byText(day)).click();
     }
-
 }

@@ -1,14 +1,16 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import resources.SimpleTextBoxTestData;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static resources.SimpleTextBoxTestData.fullName;
 
 public class SimpleTextBoxPage {
+
+
     private final SelenideElement fullNameInput = $("#userName");
     private final SelenideElement userEmailInput = $("#userEmail");
     private final SelenideElement submitButton = $("#submit");
@@ -39,8 +41,8 @@ public class SimpleTextBoxPage {
         return this;
     }
 
-    public SimpleTextBoxPage checkUserRegistrationName () {
-        registrationResultName.shouldHave(text(fullName));
+    public SimpleTextBoxPage checkUserRegistrationName (SimpleTextBoxTestData data) {
+        registrationResultName.shouldHave(text(data.fullName));
 
         return this;
     }

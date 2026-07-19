@@ -1,12 +1,12 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
+import resources.RegistrationTestData;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static resources.RegistrationTestData.*;
 
 public class FormResultsComponent {
 
@@ -14,68 +14,68 @@ public class FormResultsComponent {
     public SelenideElement userNumberInputForm =$("input[id='userNumber']");
 
 
-    public void checkNameComponent(){
+    public void checkNameComponent(RegistrationTestData data){
         formResults.find(byText("Student Name"))
                 .parent()
-                .shouldHave(text(firstName + " " + lastName));
+                .shouldHave(text(data.firstName + " " + data.lastName));
+
     }
 
-    public void checkEmailComponent(){
+    public void checkEmailComponent(RegistrationTestData data){
         formResults.find(byText("Student Email"))
                 .parent()
-                .shouldHave(text(userRegistrationFormEmail));
+                .shouldHave(text(data.userRegistrationFormEmail));
     }
 
-    public void checkGenderComponent(){
+    public void checkGenderComponent(RegistrationTestData data){
         formResults.find(byText("Gender"))
                 .parent()
-                .shouldHave(text(gender));
+                .shouldHave(text(data.gender));
     }
 
-    public void checkNumberComponent(){
+    public void checkNumberComponent(RegistrationTestData data){
         formResults.find(byText("Mobile"))
                 .parent()
-                .shouldHave(text(userNumber));
+                .shouldHave(text(data.userNumber));
     }
 
-    public void checkDateOfBirthComponent(){
+    public void checkDateOfBirthComponent(RegistrationTestData data){
         formResults.find(byText("Date of Birth"))
                 .parent()
-                .shouldHave(text("0" + dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+                .shouldHave(text("0" + data.dayOfBirth + " " + data.monthOfBirth + "," + data.yearOfBirth));
     }
 
-    public void checkSubjectsComponent(){
+    public void checkSubjectsComponent(RegistrationTestData data){
         formResults.find(byText("Subjects"))
                 .parent()
-                .shouldHave(text(subject));
+                .shouldHave(text(data.subject));
     }
 
-    public void checkHobbiesComponent(){
+    public void checkHobbiesComponent(RegistrationTestData data){
         formResults.find(byText("Hobbies"))
                 .parent()
-                .shouldHave(text(hobbies.get(0) + ", " +  hobbies.get(1) + ", " +  hobbies.get(2)));
+                .shouldHave(text(data.hobbies));
     }
 
-    public void checkFileComponent(){
+    public void checkFileComponent(RegistrationTestData data){
         formResults.find(byText("Picture"))
                 .parent()
-                .shouldHave(text(file));
+                .shouldHave(text(data.file));
     }
 
-    public void checkAddressComponent(){
+    public void checkAddressComponent(RegistrationTestData data){
         formResults.find(byText("Address"))
                 .parent()
-                .shouldHave(text(currentAddress));
+                .shouldHave(text(data.currentAddress));
     }
 
-    public void checkStateAndCityComponent(){
+    public void checkStateAndCityComponent(RegistrationTestData data){
         formResults.find(byText("State and City"))
                 .parent()
-                .shouldHave(text(state + " " + city));
+                .shouldHave(text(data.state + " " + data.city));
     }
 
     public void checkPhoneNumberValidationTrigger(){
         userNumberInputForm.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
-
 }
