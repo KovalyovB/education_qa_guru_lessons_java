@@ -1,7 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import resources.SimpleTextBoxTestData;
+import test_data.SimpleTextBoxTestData;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -23,7 +23,7 @@ public class SimpleTextBoxPage {
         return this;
     }
 
-    public SimpleTextBoxPage typeUserFullName (String value) {
+    public SimpleTextBoxPage typeUserFullName(String value) {
         fullNameInput.setValue(value);
 
         return this;
@@ -35,19 +35,19 @@ public class SimpleTextBoxPage {
         return this;
     }
 
-    public SimpleTextBoxPage typeUserEmail (String value) {
+    public SimpleTextBoxPage typeUserEmail(String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
 
-    public SimpleTextBoxPage checkUserRegistrationName (SimpleTextBoxTestData data) {
+    public SimpleTextBoxPage checkUserRegistrationName(SimpleTextBoxTestData data) {
         registrationResultName.shouldHave(text(data.fullName));
 
         return this;
     }
 
-    public SimpleTextBoxPage isRegistrationFormHiddenForInvalidData()  {
+    public SimpleTextBoxPage isRegistrationFormHiddenForInvalidData() {
         registrationResultBlock.shouldNotBe(visible);
 
         return this;

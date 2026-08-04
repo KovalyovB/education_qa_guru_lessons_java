@@ -2,9 +2,9 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.SimpleTextBoxPage;
-import resources.SimpleTextBoxTestData;
+import test_data.SimpleTextBoxTestData;
 
-import static resources.SimpleTextBoxTestData.invalidTextBoxEmail;
+import static test_data.SimpleTextBoxTestData.invalidTextBoxEmail;
 
 public class SimpleTextBoxFormTests extends TestBase {
     SimpleTextBoxPage simpleTextBoxPage = new SimpleTextBoxPage();

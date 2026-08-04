@@ -3,7 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.FormResultsComponent;
-import resources.RegistrationTestData;
+import test_data.RegistrationTestData;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
@@ -19,7 +19,7 @@ public class StudentRegistrationPage {
     private final SelenideElement lastNameInput = $("#lastName");
     private final SelenideElement userEmailInput = $("#userEmail");
     private final SelenideElement genderTypeContainer = $("#genterWrapper");
-    private final  SelenideElement userNumberInput = $("#userNumber");
+    private final SelenideElement userNumberInput = $("#userNumber");
     private final SelenideElement dataOfBirthInput = $("#dateOfBirthInput");
     private final SelenideElement subjectsInput = $("#subjectsInput");
     private final SelenideElement hobbiesContainer = $("#hobbiesWrapper");

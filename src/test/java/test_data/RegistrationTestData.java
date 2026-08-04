@@ -1,4 +1,4 @@
-package resources;
+package test_data;
 
 import com.github.javafaker.Faker;
 
@@ -19,7 +19,7 @@ public class RegistrationTestData {
                     "May", "June", "July", "August", "September", "October",
                     "November", "December");
     public String yearOfBirth = String.valueOf(fakerEn.random().nextInt(1980, 2026));
-    public String dayOfBirth = String.valueOf(fakerEn.random().nextInt(1,28));
+    public String dayOfBirth = String.valueOf(fakerEn.random().nextInt(1, 28));
     public String subject = fakerEn.options()
             .option(
                     "English", "Chemistry", "Computer Science", "Commerce",
@@ -33,10 +33,10 @@ public class RegistrationTestData {
     public String message = "Thanks for submitting the form";
 
     private static final Map<String, String[]> CITIES = Map.of(
-                "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
-                "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
-                "Haryana", new String[]{"Karnal", "Panipat"},
-                "Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
+            "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
+            "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
+            "Haryana", new String[]{"Karnal", "Panipat"},
+            "Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
 
     private String randomCity(String state) {
 
