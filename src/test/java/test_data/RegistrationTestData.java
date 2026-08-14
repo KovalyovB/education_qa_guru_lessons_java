@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RegistrationTestData {
-    private final Faker fakerEn = new Faker(new Locale("en"));
+    private static final Faker fakerEn = new Faker(new Locale("en"));
 
     public String firstName = fakerEn.name().firstName();
     public String lastName = fakerEn.name().lastName();
