@@ -45,9 +45,12 @@ public class FormResultsComponent {
 
     @Step("Проверка даты рождения на итоговой форме регистрации")
     public void checkDateOfBirthComponent(RegistrationTestData data) {
+        String day = data.dayOfBirth;
+        String formattedDay = day.length() == 1 ? "0" + day : day;
+
         formResults.find(byText("Date of Birth"))
                 .parent()
-                .shouldHave(text("Date of Birth " + data.dayOfBirth + " " + data.monthOfBirth + "," + data.yearOfBirth));
+                .shouldHave(text("Date of Birth " + formattedDay + " " + data.monthOfBirth + "," + data.yearOfBirth));
     }
 
     @Step("Проверка дисциплины на итоговой форме регистрации")

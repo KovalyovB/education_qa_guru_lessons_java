@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
@@ -98,6 +99,7 @@ public class StudentRegistrationPage {
     @Step("Загрузка файла \"{value}\"")
     public StudentRegistrationPage uploadFile(String value) {
         uploadFileButton.uploadFromClasspath(value);
+        uploadFileButton.shouldBe(Condition.enabled).uploadFromClasspath(value);
 
         return this;
     }
