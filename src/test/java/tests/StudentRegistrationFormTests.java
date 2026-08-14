@@ -16,8 +16,9 @@ public class StudentRegistrationFormTests extends TestBase {
     @Test
     @DisplayName("Registration with all fields test")
     void registrationWithAllFieldsTest() {
-        studentRegistrationPage.openPage();
-
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
         step("Заполнение формы регистрации", () -> {
             studentRegistrationPage.typeFirstName(data.firstName)
                     .typeLastName(data.lastName)
@@ -33,7 +34,7 @@ public class StudentRegistrationFormTests extends TestBase {
                     .setCity(data.city)
                     .submitForm();
         });
-        step("Проверка заполнения формы регистрации", () -> {
+        step("Проверки заполнения формы регистрации", () -> {
             studentRegistrationPage.checkModalTitle(data.message)
                     .checkAllFieldsResults(data);
         });
@@ -42,8 +43,9 @@ public class StudentRegistrationFormTests extends TestBase {
     @Test
     @DisplayName("Fill required fields test")
     void fillRequiredFieldsTest() {
-        studentRegistrationPage.openPage();
-
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
         step("Заполнение обязательных полей на форме регистрации", () -> {
             studentRegistrationPage.typeFirstName(data.firstName)
                     .typeLastName(data.lastName)
@@ -51,7 +53,7 @@ public class StudentRegistrationFormTests extends TestBase {
                     .typeUserPhoneNumber(data.userNumber)
                     .submitForm();
         });
-        step("Проверка заполнения формы регистрации", () -> {
+        step("Проверки заполнения формы регистрации", () -> {
             studentRegistrationPage.checkModalTitle(data.message)
                     .checkRequiredFieldsResults(data);
         });
@@ -60,35 +62,43 @@ public class StudentRegistrationFormTests extends TestBase {
     @Test
     @DisplayName("Is phone number validation triggered")
     void isPhoneNumberValidationTriggered() {
-        studentRegistrationPage.openPage();
-
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
         step("Заполнение обязательных полей за исключением номера телефона", () -> {
             studentRegistrationPage.typeFirstName(data.firstName)
                     .typeLastName(data.lastName)
                     .setGender(data.gender)
                     .submitForm();
         });
-        studentRegistrationPage.checkPhoneNumberValidationTrigger();
+        step("Проверки валидации поля номера телефона", () -> {
+            studentRegistrationPage.checkPhoneNumberValidationTrigger();
+        });
     }
 
     @Test
     @DisplayName("Is required gender missing test")
     void isRequiredGenderMissingTest() {
-        studentRegistrationPage.openPage();
-
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
         step("Заполнение обязательных полей за исключением пола", () -> {
             studentRegistrationPage.typeFirstName(data.firstName)
                     .typeLastName(data.lastName)
                     .typeUserPhoneNumber(data.userNumber)
                     .submitForm();
         });
-        studentRegistrationPage.checkRequiredParameters();
+        step("Проверки обязательности поля пола", () -> {
+            studentRegistrationPage.checkRequiredParameters();
+        });
     }
 
     @Test
     @DisplayName("Email validation failed test")
     void emailValidationFailedTest() {
-        studentRegistrationPage.openPage();
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
         step("Заполнение полей с некорректным Email", () -> {
             studentRegistrationPage.typeFirstName(data.firstName)
                     .typeLastName(data.lastName)
@@ -106,14 +116,22 @@ public class StudentRegistrationFormTests extends TestBase {
                     .setCity(data.city)
                     .submitForm();
         });
-        studentRegistrationPage.checkRequiredParameters();
+        step("Проверки валидации поля почты", () -> {
+            studentRegistrationPage.checkRequiredParameters();
+        });
     }
 
     @Test
     @DisplayName("Try register with empty fields test")
     void tryRegisterWithEmptyFieldsTest() {
-        studentRegistrationPage.openPage()
-                .submitForm()
-                .checkRequiredParameters();
+        step("Открывается страница регистрации", () -> {
+            studentRegistrationPage.openPage();
+        });
+        step("Попытка регистрации с пустыми полями", () -> {
+            studentRegistrationPage.submitForm();
+        });
+        step("Проверки валидации по обязательным полям", () -> {
+            studentRegistrationPage.checkRequiredParameters();
+        });
     }
 }
