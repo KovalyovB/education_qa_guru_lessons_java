@@ -1,6 +1,7 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -10,6 +11,7 @@ public class CalendarComponent {
     public SelenideElement year = $(".react-datepicker__year-select");
     public SelenideElement day = $(".react-datepicker__month");
 
+    @Step("Ввод даты рождения: день \"{day}\", месяц \"{month}\", год \"{year}\"")
     public void setDate(String day, String month, String year) {
         this.month.selectOption(month);
         this.year.selectOption(year);
