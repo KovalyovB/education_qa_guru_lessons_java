@@ -19,9 +19,11 @@ public class TestBase {
 
     @BeforeAll
     static void setupEnvironment() {
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("browsersize", "1920x1080");
+        Configuration.baseUrl = System.getProperty("url", "https://demoqa.com");
+        Configuration.browserVersion = System.getProperty("version");
+        Configuration.headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -32,7 +34,14 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.qa.guru/wd/hub";
+        Configuration.remote = System.getProperty("remote");
+
+        System.out.println("URL: " + Configuration.baseUrl);
+        System.out.println("Browser: " + Configuration.browser);
+        System.out.println("Browser size: " + Configuration.browserSize);
+        System.out.println("Browser version: " + Configuration.browserVersion);
+        System.out.println("Headless: " + Configuration.headless);
+        System.out.println("Remote: " + Configuration.remote);
     }
 
     @BeforeEach
