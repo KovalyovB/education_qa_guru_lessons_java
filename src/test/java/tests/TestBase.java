@@ -35,13 +35,6 @@ public class TestBase {
         ));
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = System.getProperty("remote");
-
-        System.out.println("URL: " + Configuration.baseUrl);
-        System.out.println("Browser: " + Configuration.browser);
-        System.out.println("Browser size: " + Configuration.browserSize);
-        System.out.println("Browser version: " + Configuration.browserVersion);
-        System.out.println("Headless: " + Configuration.headless);
-        System.out.println("Remote: " + Configuration.remote);
     }
 
     @BeforeEach
